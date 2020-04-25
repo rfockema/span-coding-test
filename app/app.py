@@ -12,8 +12,11 @@ def GetMatchPoints(goals_for, goals_against):
 
 class LeagueTable():
     teams = dict()
+    
+    def __init__(self):
+        self.teams = dict()
 
-    def __init__(self, matches):
+    def AddMatchesData(self, matches):
         for match in matches:
             teams_goals = match.split(', ')
             team1_name = teams_goals[0][0:-2]
@@ -44,7 +47,7 @@ class LeagueTable():
 
             if prev_score > team_score:
                 rank = i
-            
+
             tail_str = 'pts'
             if team_score == 1:
                 tail_str = 'pt'
@@ -55,5 +58,6 @@ class LeagueTable():
 
 
 if __name__ == '__main__':
-    league_table = LeagueTable(sys.stdin)
+    league_table = LeagueTable()
+    league_table.AddMatchesData(sys.stdin)
     league_table.PrintOrderedTable()
