@@ -1,0 +1,3 @@
+tests/data/test_result.txt
+app/__pycache__/
+tests/__pycache__/
