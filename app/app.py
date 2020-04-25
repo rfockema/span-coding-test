@@ -16,7 +16,7 @@ class LeagueTable():
     def __init__(self):
         self.teams = dict()
 
-    def AddMatchesData(self, matches):
+    def AddMatchResults(self, matches):
         for match in matches:
             teams_goals = match.split(', ')
             team1_name = teams_goals[0][0:-2]
@@ -59,5 +59,5 @@ class LeagueTable():
 
 if __name__ == '__main__':
     league_table = LeagueTable()
-    league_table.AddMatchesData(sys.stdin)
+    league_table.AddMatchResults(sys.stdin)
     league_table.PrintOrderedTable()

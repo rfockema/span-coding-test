@@ -15,7 +15,7 @@ def test_update_points():
 
 def test_get_ordered_table_list():
     league_table = LeagueTable()
-    league_table.AddMatchesData(open('./tests/data/test_matches.txt', 'r'))
+    league_table.AddMatchResults(open('./tests/data/test_matches.txt', 'r'))
     prev_row = [None, None]
     for row in league_table.GetOrderedTableList():
         if prev_row[0] != None:
@@ -26,7 +26,7 @@ def test_get_ordered_table_list():
 
 def test_print_ordered_table():
     league_table = LeagueTable()
-    league_table.AddMatchesData(open('./tests/data/test_matches.txt', 'r'))
+    league_table.AddMatchResults(open('./tests/data/test_matches.txt', 'r'))
     import sys
     old_stdout = sys.stdout
     sys.stdout = open('./tests/data/test_result.txt', 'w')
