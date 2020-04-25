@@ -13,6 +13,18 @@ def test_update_points():
     assert league_table.teams['Tarantulas'] == 2
 
 
+def test_add_match_results():
+    league_table = LeagueTable()
+    mock_match_data = [
+        'Lions 3, Snakes 3\n',
+        'Lions 3, Snakes 0\n',
+        'Lions 0, Snakes 3\n',
+    ]
+    league_table.AddMatchResults(mock_match_data)
+    assert league_table.teams['Lions'] == 4
+    assert league_table.teams['Snakes'] == 4
+
+
 def test_get_ordered_table_list():
     league_table = LeagueTable()
     league_table.AddMatchResults(open('./tests/data/test_matches.txt', 'r'))
@@ -27,6 +39,7 @@ def test_get_ordered_table_list():
 def test_print_ordered_table():
     league_table = LeagueTable()
     league_table.AddMatchResults(open('./tests/data/test_matches.txt', 'r'))
+
     import sys
     old_stdout = sys.stdout
     sys.stdout = open('./tests/data/test_result.txt', 'w')
@@ -34,7 +47,6 @@ def test_print_ordered_table():
     sys.stdout = old_stdout
 
     import difflib
-
     file1 = open('./tests/data/test_result.txt', 'r')
     file2 = open('./tests/data/correct_result.txt', 'r')
     diff = difflib.ndiff(file1.readlines(), file2.readlines())
