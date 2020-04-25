@@ -8,5 +8,5 @@ The ./tests/test_app.py file contains the automated tests for the application
 
 To run the tests, pytest must be installed (pip install -U pytest). 
 
-When it is insalled the following comamnd will run the test:
+When it is insalled the following comamnd will run the tests:
 > python -m pytest
