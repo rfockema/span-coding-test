@@ -1,4 +1,4 @@
-from app.app import LeagueTable, GetMatchPoints
+from app.league_table import LeagueTable, GetMatchPoints
 
 TEST_INPUT_DATA_PATH = './tests/data/test_matches.txt'
 TEST_OUTPUT_PATH = './tests/data/test_result.txt'
@@ -12,28 +12,28 @@ def test_get_points():
 
 
 def test_update_points():
-    league_table = LeagueTable()
-    league_table.UpdatePoints('Tarantulas', 2)
-    assert league_table.teams['Tarantulas'] == 2
+    test_lg = LeagueTable()
+    test_lg.UpdatePoints('Tarantulas', 2)
+    assert test_lg.teams['Tarantulas'] == 2
 
 
 def test_add_match_results():
-    league_table = LeagueTable()
+    test_lg = LeagueTable()
     mock_match_data = [
         'Lions 3, Snakes 3\n',
         'Lions 3, Snakes 0\n',
         'Lions 0, Snakes 3\n',
     ]
-    league_table.AddMatchResults(mock_match_data)
-    assert league_table.teams['Lions'] == 4
-    assert league_table.teams['Snakes'] == 4
+    test_lg.AddMatchResults(mock_match_data)
+    assert test_lg.teams['Lions'] == 4
+    assert test_lg.teams['Snakes'] == 4
 
 
 def test_get_ordered_table_list():
-    league_table = LeagueTable()
-    league_table.AddMatchResults(open(TEST_INPUT_DATA_PATH, 'r'))
+    test_lg = LeagueTable()
+    test_lg.AddMatchResults(open(TEST_INPUT_DATA_PATH, 'r'))
     prev_row = [None, None]
-    for row in league_table.GetOrderedTableList():
+    for row in test_lg.GetOrderedTableList():
         if prev_row[0] != None:
             assert prev_row[1] > row[1] or (
                 prev_row[1] == row[1] and prev_row[0] < row[0])
@@ -41,13 +41,13 @@ def test_get_ordered_table_list():
 
 
 def test_print_ordered_table():
-    league_table = LeagueTable()
-    league_table.AddMatchResults(open(TEST_INPUT_DATA_PATH, 'r'))
+    test_lg = LeagueTable()
+    test_lg.AddMatchResults(open(TEST_INPUT_DATA_PATH, 'r'))
 
     import sys
     old_stdout = sys.stdout
     sys.stdout = open(TEST_OUTPUT_PATH, 'w')
-    league_table.PrintOrderedTable()
+    test_lg.PrintOrderedTable()
     sys.stdout = old_stdout
 
     import difflib

@@ -2,7 +2,7 @@
 
 I used python3 for the coding test
 
-The ./app/app.py file contains the application that accepts the stdin
+The ./app/league_table.py file contains the application that accepts the stdin
 
 The ./tests/test_app.py file contains the automated tests for the application
 
